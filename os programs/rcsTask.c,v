@@ -1,0 +1,99 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.5
+date	2018.09.03.23.42.54;	author benny;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.09.03.23.37.21;	author benny;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.09.03.23.34.48;	author benny;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.09.03.23.30.47;	author benny;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.09.03.23.28.26;	author benny;	state Exp;
+branches;
+next	;
+
+
+desc
+@RcsTaskFile
+@
+
+
+1.5
+log
+@Another different revision
+@
+text
+@/*
+1. Initialize rcs of a file.    //Done
+2. Create 4 revisions of the file.   //Done
+3. print the difference of revisions of 1.1 and 1.2.
+4. perform co-operation with acquirinh lock and without acquiring lock.
+5. print log.
+*/
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+printf("It is the rcs file ");
+printf("Another write in the file");
+printf("%d",11-12);
+printf("Fourth Revision");
+}
+@
+
+
+1.4
+log
+@Fourth Revision
+@
+text
+@d2 3
+a4 3
+1. Initialize rcs of a file.
+2. Create 4 revisions of the file.
+3. print the difference of 11 and 12.
+@
+
+
+1.3
+log
+@printed Difference
+@
+text
+@d14 1
+@
+
+
+1.2
+log
+@Written another line
+@
+text
+@d13 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d12 1
+@

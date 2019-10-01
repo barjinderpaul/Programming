@@ -1,0 +1,4 @@
+cse 329;
+
+#include<bits/stdc++.h> //contains all includes; //we does not have to mention specific includes 
+						//not universily accepted //increases compilation time //includes all thus increasing space	

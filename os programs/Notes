@@ -1,0 +1,253 @@
+06-08-18 : 
+
+ **open
+
+open("/home/user/desktop/abc.txt",O_RDONLY|O_CREAT,00700); 
+// In case of open only we need not to specify the  mode : |O_CREAT,00700 
+// We have written O_RDONLY and 00700 at the same time so that at the time of the creation the file is opened in readonly mode but the permissions of the file is 00700;
+
+
+
+// Like if we have a function as fact();
+if we print the fact(), it will print the base address of the function where the function is stored;
+
+
+
+ ** read :
+
+read (fd, char *buffer,10);
+ 
+char buffer[10];  or 
+
+char *buffer;
+buffer = (char *) malloc(N*sizeofchar); //where n is the size of the buffer;
+
+//malloc - one argument;
+//calloc - 2 arguments;
+ 
+ ** write;
+write(fd,buffer,noOfChar);
+
+ **lseek;
+
+lseek( int fd,	off_t offset, int whence); 
+//offset = -ve or +ve;
+whence : SEEK_SET, SEEK_CUR, SEEK_END
+
+
+QUESTIONS :
+Write a C Program using open/create,read, write, close, lseek system call which will : 
+1. create a file named as sampleFile.txt in your user's desktop;
+2. write 100 characters in the sampleFile.txt 
+3. Print the first 10 characters and last 10 characters on the screen.
+4. write the first 10 and last 10 inside a file named as sample1.txt
+
+HOME ASSIGNMENT :
+read the manual of  :  open,read,write,creat,close,lseek //systemcalls
+		       fopen,fread,fwrite,fclose,fseek //library functions 
+		      I/P : Fgetc,getc,gets,fgets,getchar
+		      O/P : putc,putchar,puts,fputs,fputc
+
+
+
+ ** Command line arguments :
+
+int main(int argc //arguments count , char *argv[]){	}
+or
+int main(int argc //arguments count , char **argv){	}
+or
+int main(int argc //arguments count , char argv[][]){	}
+
+// char *argv is 2d in nature : 
+
+if ./a.out 10 20 30 
+	then in argv, it will be stored as :
+		[.|/|a|.|o|u|t| | | ]
+		[1|0| | | | | | | | ]
+		[2|0| | | | | | | | ]
+		[3|0| | | | | | | | ]
+	"space is the delimiter in the arguments ;
+	to display arguments  L puts(argv[0]) or puts(argv[1]) ;
+
+// atoi function to convert char/string to integer
+// math library in gcc : 
+include<math.h>
+rand();
+gcc program.c -lm  //-l for linking and m for math library;
+./a.out
+
+fstate to get details for file
+code to eject cdrom in c;
+
+
+07-08-18
+
+fprintf = int fprintf(FILE *fp, FORMAT,...);
+Q: lets say f1.txt and f2.txt, 10-20 character from f1 to f2;
+A: //Assuming that files are already created
+   char p[10]; 
+   FILE *fp=fopen("f1.txt","r"); //read mode
+   fseek(fp,10,SEEK_SET);	//cursor set to 10th character in file;
+   fread(p,10,1,fp); //10 characters reading 1 by 1 char; //read from fp and store in p[10];
+   FILE *fp2 = fopen("f2.txt","w"); //write mode
+   fprintf(fp,"%s",p); //%s string print //p=printing from p , writing in fp2;
+   
+
+	Default I/p | FD | FP	//FD = File Descriptor //FP= File Pointer
+	1.I/P	    | 0  | STDIN 	
+ 	2.O/P	    | 1  | STDOUT
+	3.2	    | 2  | STDERR
+
+	// Certifications : RHCSA , RHCE in Red Hat
+
+------------------
+command ls :
+ files will be displayed;
+ choose any one file;
+command stat file_name; It will give some information about that specific file like number of links. size etc;
+command fstat : To use in c programming as a function;
+stat uses a stat struct as in given in command 'man stat'; to give information in a program;
+syntax : stat("Path of file", struct stat *buf);
+//device id means the harddisk's device id;
+
+important data types in struct stat: 
+	sruct stat {
+               dev_t     st_dev;         /* ID of device containing file */
+               ino_t     st_ino;         /* inode number */
+               mode_t    st_mode;        /* protection */
+               nlink_t   st_nlink;       /* number of hard links */
+               uid_t     st_uid;         /* user ID of owner */
+	       gid_t     st_gid;         /* group ID of owner */
+ 	       off_t     st_size;        /* total size, in bytes */
+               blksize_t st_blksize;     /* blocksize for filesystem I/O */ //How much minimum physical memory is allocated to files;
+
+Types of addressing : bit  addressable, byte addressable, block addressable 
+	Bit : for every bit, the address is generated
+	Byte : for every byte, the address is generated
+	Block : for every block, the address is generated
+
+stat program : 
+struct stat s1; from manual ;
+stat("f1.txt",&s1);
+printf("Inode of this file %d \n", s.st_ino); //similarily all others;
+
+
+
+ques : stat, i/o and open functions all as previous home assignment;
+	creattion of header files 
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+20-08-18;
+------------------------------------------------------------------------------------------------------------------------------------
+
+Question to open all textfiles in directory and append in a file;
+Ans :
+By shell scripting : 
+ls -1 (to get filename in 1 column grep.txt3only;
+ls -1 | grep.txt
+ls-l | new grep [RE]
+
+
+system("./shell"); //to use output of shell files in c program;
+system("any command of terminal");
+
+functions : time , ctime, gmtime, localtime, gettimeofday(),strftime();
+
+Question : 
+Write a program to create a log file named log.txt having columns :
+user | Time | Date
+The time should be entered in it when file is opened as well as closed;
+
+format : Monday August 2018
+
+To get user = getenv();
+to put user = putenv();
+
+// time() -> will give seconds;
+// gettimeofdat() -> will give seconds as well as microseconds;
+
+To calculate how much time the program was running on the system, we can do : 
+int main(){
+t1= gettimeofday(); //write at the start of the program;
+t2= gettimeofday(); //write at the end of the program;
+then calculate t2-t1 so it will give the time that for how much time the program was in execution;
+
+
+we can get ostype, username, home, path, version name from environment variable
+
+
+
+28th August, 2018;
+
+extern keyword to access elements from other files in other program;
+learn about environment variables;
+functions : 
+1. getuid();
+2. getlogin();
+3. getpwuid();
+4. getpwnam();
+5. setuid();
+6. setgid();	
+
+//GETTY process with pid =0 ; initiates the system and then goes to sleep; also called mother of processes;
+
+
+4th september : 
+Topics till mte : 
+header files creation;
+file system
+environment variables;
+command line args;
+user information uid and all;
+time functions;
+I/P and O/P functions;
+dup, dup2 and dup3 functions;
+Dir functions : 	
+opendir(); readdir(); closedir();
+
+
+10th September : 
+
+Today's point of discussion : 
+1. Log Files()  : syslog();
+2. Temporary Files() : tmfile();
+3. Memory Abusing: Dynamic memory allocation.
+
+
+8/10/18 :
+
+12 CODD Rules, if a database follows all 12 rules, only then it is called truely relational database.
+
+GDM : inbuilt database of linux;
+
+Diff between data structure and database :
+datastructures stores data temporarily(volatile storage) , isFast.
+Database stores data permanently (non-volatile storage) , isSlow.
+
+database can be created in files as well  : but there could be redundancies in it .
+but databases lke mySQl, oracle are efficient and are faster then files.(searching and insertion , retrieving are faster).
+
+c
+
+
+
+
+23 October,  :
+Important topics : 
+1. File Handling(Creation, Deletion, Modification, Copying, Data etc;) ------------ very imp.
+2. Stat, dup , fcntl base tasks;
+3. I/P and O/p related functions; --------------------- very imp
+4. Environment Variables;	-------	very imp
+5. Command Line arguments handling; ------very imp
+6. User information accessing;
+7. Temporary files and log files creation;
+8. Locking(exclusive, shared and regional)----very imp
+9. GDB related tasks; (debugger etc)
+10. MySQL database accessing using c;-------------------eeee
+sdfssdfsdfdsfsdfdsfsdfsdsdvery imp
+11. QT;
+12. GDBM.
+13. RCS
+
+1-> File handling

@@ -1,0 +1,90 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.4
+date	2018.09.04.00.52.34;	author benny;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.09.04.00.51.47;	author benny;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.09.04.00.50.58;	author benny;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.09.04.00.50.10;	author benny;	state Exp;
+branches;
+next	;
+
+
+desc
+@RCS Initialised on main.c
+@
+
+
+1.4
+log
+@3rd Revision
+@
+text
+@#include<stdio.h>
+#include<stdlib.h>
+#include "myheader.h"   //included created myheader.h header file
+
+extern void func1();    //function 1 is accessable in this program
+extern void func2();	//function 2 is accessable in this program
+
+int main(){		//main function called //1st revision
+
+	int n = inputNumber();  //input number from myheader
+	if(n%2 == 0){		//checks if number is even
+		func1(n);	//calls func1 to display number //2nd Revision
+	}
+	else{
+	func2(n);		//if number is odd
+		}		//end of program //3rd revision
+
+}
+@
+
+
+1.3
+log
+@2nd Revision done
+@
+text
+@d16 1
+a16 1
+		}
+@
+
+
+1.2
+log
+@1st revision done
+@
+text
+@d12 1
+a12 1
+		func1(n);	
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+a8 1
+int main(){
+@

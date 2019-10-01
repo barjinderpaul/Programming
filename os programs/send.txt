@@ -1,0 +1,89 @@
+---- Question 1 ---
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <mysql.h>
+int main(int argc, char *argv[]) {
+	MYSQL my_connection;
+	int res;
+	mysql_init(&my_connection);
+	if (mysql_real_connect(&my_connection, "localhost","root", "root", "db1", 0, NULL, 0)) 
+	{
+		printf("Connection success\n");
+		res = mysql_query(&my_connection, "create table db1table (emp_id int, emp_name varchar(50), emp_salary varchar(50), 				emp_designation varchar(50)");
+		if (!res) {
+			printf("table created\n");
+		}
+		
+		else {
+			printf("error in table creating ");
+			mysql_error(&my_connection);
+			}
+	mysql_close(&my_connection);
+	} 
+	else {
+		fprintf(stderr, "Connection failed\n");
+		if (mysql_errno(&my_connection)) 
+		{
+			fprintf(stderr, "Connection error %d: %s\n",
+			mysql_errno(&my_connection), mysql_error(&my_connection));
+		}
+	}
+	return 0;
+}
+
+
+---- Question 2 -----
+
+#include<stdio.h>
+#include<string.h>
+#include<gdbm.h>
+
+
+ typedef struct myd_tag{
+                 int id;
+                 char name[24];
+		 int salary;
+		 char designation[50];
+               }myd;
+
+int main(int argc, char *argv[])
+{
+	GDBM_FILE file;
+	
+	datum key1, data1, ndata1;	//datum types
+	char *k1 = "key1";		//key value
+	myd d1 = {1,"ABC",10000,"Manager"};	//struct d1 elements
+	key1.dptr = k1;			//key got the to the pointer to value
+	key1.dsize = strlen(k1) + 1;	//key size
+	data1.dptr = (char *)&d1;	//data got the pointer to value;
+	data1.dsize = sizeof(d1);	//data size
+	file=gdbm_open("DB1",0,GDBM_WRCREAT|GDBM_READER,0660,0); //database opened
+	gdbm_store(file,key1,data1,GDBM_INSERT);		//data stored in database
+	ndata1=gdbm_fetch(file,key1);		//data fetched
+	
+	printf("Data: %d\n",((myd *)ndata1.dptr)->id);
+	printf("Data: %s\n",((myd *)ndata1.dptr)->name);
+	printf("Data: %d\n",((myd *)ndata1.dptr)->salary);
+	printf("Data: %s\n",((myd *)ndata1.dptr)->designation);
+	gdbm_close(file);
+
+}
+
+
+
+---- Question 3 -----
+#include<stdio.h>
+int main(){
+	int a,b,c;
+	a = 10;
+	b=30;
+	c = a+b;
+	c= a-b;
+	c = a*b;
+	c=a/b;
+
+}
+
+
+

@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+#define lli long long int
+using namespace std;
+int main(){
+    lli val,k,n,sum=0;
+    cin>>n;
+    multiset<lli>ms;
+    while(n--){
+        cin>>k;
+        for(lli i=0;i<k;i++){
+            cin>>val;
+            ms.insert(val);
+        }
+        auto it = s.begin();
+        multiset<lli>::reverse_iterator it2 = ms.rbegin();
+        it2++;
+        sum+=(*it2-it);
+    }
+    cout<<sum;
+}

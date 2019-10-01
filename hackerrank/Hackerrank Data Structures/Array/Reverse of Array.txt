@@ -1,0 +1,17 @@
+Print all N integers in Array in reverse order as a single line of space-separated integers.
+
+: 
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int numberOfElements,i;
+    cin>>numberOfElements;
+    int arr[numberOfElements];
+    for(i-0;i<numberOfElements;i++){
+        cin>>arr[i];
+    }
+    for(i=numberOfElements-1;i>=0;i--){
+        cout<<arr[i]<<" ";
+    }
+}
