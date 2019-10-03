@@ -8,7 +8,7 @@ void findUnique(int *a, int n){
         int j=0;
         while(num>0){
             bitCount[j]+=(num&1)
-            ++j;
+            ++j;    
             num = num>>1;
         }
     }
