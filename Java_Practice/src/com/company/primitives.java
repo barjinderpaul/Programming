@@ -25,5 +25,16 @@ class primitives {
         System.out.println(f);
         
 
+        long val = 12345678997L;
+        int valI = (int)val;
+        // garbage value
+        System.out.println(valI);
+
+
+        int ab = 1;
+        int b = Integer.MAX_VALUE;
+        // long c = ab+a; //overflows
+        long c = (long)ab + b; //works 
+        System.out.println(c);
     }
 }
